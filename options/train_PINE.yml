@@ -1,0 +1,110 @@
+name: PINE_swin_UNIQ
+model_type: HRIQAModel
+num_gpu: 1
+manual_seed: 42
+define: 24
+datasets:
+  train:
+    name: UNIQ
+    type: HNRDataset
+    dataroot_target: datasets/UNIQ
+    meta_info_file: ./datasets/meta_info/meta_info_UNIQDataset.csv
+    split_file: ./datasets/meta_info/UNIQ_seed42.pkl
+    split_index: 1
+    mos_range:
+    - 0
+    - 1
+    lower_better: false
+    mos_normalize: true
+    repeat_times: 1
+    augment:
+      hflip: true
+      salient_patch_dimension: 384
+      fragment_grid_size: 12
+      fragment_size: 32
+    img_range: 1.0
+    use_shuffle: true
+    num_worker_per_gpu: 4
+    batch_size_per_gpu: 24
+    dataset_enlarge_ratio: 1
+    prefetch_mode: cpu
+    num_prefetch_queue: 24
+  val:
+    name: UNIQ
+    type: HNRDataset
+    dataroot_target: datasets/UNIQ
+    meta_info_file: ./datasets/meta_info/meta_info_UNIQDataset.csv
+    split_file: ./datasets/meta_info/UNIQ_seed42.pkl
+    split_index: 1
+    mos_range:
+    - 0
+    - 1
+    lower_better: false
+    mos_normalize: true
+    repeat_times: 1
+    augment:
+      salient_patch_dimension: 384
+      fragment_grid_size: 12
+      fragment_size: 32
+    num_worker_per_gpu: 4
+    batch_size_per_gpu: 24
+    prefetch_mode: cpu
+    num_prefetch_queue: 32
+network:
+  type: UFANet
+  pretrained: false
+  semantic_model_name: swin_base_patch4_window12_384_in22k
+  block_pool: weighted_avg
+  psam_window_size: 7
+  nvf_D: 75
+  pfem_dct_block_size: 8
+  pfem_ppd: 30.0
+path:
+  strict_load_g: true
+  resume_state: null
+train:
+  optim:
+    type: AdamW
+    lr: 3.0e-05
+    weight_decay: 0.01
+  scheduler:
+    type: CosineAnnealingLR
+    T_max: 50
+    eta_min: 0
+  accumulation_steps: 1
+  total_iter: 200000
+  total_epoch: 100
+  finetune_start_iter: 0
+  warmup_iter: -1
+  mos_loss_opt:
+    type: MSELoss
+    loss_weight: 1.0
+  metric_loss_opt:
+    type: PLCCLoss
+    loss_weight: 0.1
+val:
+  val_freq: 159.0
+  save_img: false
+  pbar: true
+  key_metric: srcc
+  metrics:
+    srcc:
+      type: calculate_srcc
+    plcc:
+      type: calculate_plcc
+    krcc:
+      type: calculate_krcc
+    rmse:
+      type: calculate_rmse
+logger:
+  print_freq: 20
+  save_latest_freq: 1500.0
+  log_imgs_freq: 1000
+  use_tb_logger: true
+  wandb:
+    project: null
+    resume_id: null
+dist_params:
+  backend: nccl
+  port: 29500
+find_unused_parameters: true

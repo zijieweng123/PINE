@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.idea/
+.vscode/
+
+# Local environments and caches
+.env
+.venv/
+venv/
+.cache/
+
+# Data, checkpoints, and generated outputs
+datasets/
+checkpoints/
+experiments/
+results/
+tb_logger/
+wandb/
+visualize/
+*.ckpt
+*.pt
+*.npz
+*.pkl
+
+# Logs and editor/OS files
+*.log
+.DS_Store
