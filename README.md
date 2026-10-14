@@ -2,7 +2,7 @@
 
 This repository is the official implementation of **PINE**, the method proposed in our IEEE Transactions on Image Processing (TIP) paper:
 
-> **Perceptual Quality Assessment of Real-World Noise in Ultra-High-Definition Images**
+> **[Perceptual Quality Assessment of Real-World Noise in Ultra-High-Definition Images](https://ieeexplore.ieee.org/document/11724642)**
 > *IEEE Transactions on Image Processing (TIP)*
 
 PINE is a no-reference image quality assessment method for evaluating real-world noise in ultra-high-definition images. This implementation is built on the [IQA-PyTorch](https://github.com/chaofengc/IQA-PyTorch) training framework.
@@ -28,6 +28,13 @@ pip install -e .
 
 The Swin backbone may be downloaded by `timm` on first use. A CUDA-enabled PyTorch installation is recommended for training.
 
+## UNIQ-5k Dataset
+
+The UNIQ-5k dataset can be downloaded from either of the following links:
+
+- [Google Drive](https://drive.google.com/drive/folders/1-5mx87UwToYP-j2EKkFvOybMEvz1mxa5?usp=drive_link)
+- [Quark Cloud Drive](https://pan.quark.cn/s/4cb61b396a15)
+
 ## Training
 
 ```bash
@@ -49,7 +56,19 @@ python inference.py \
 
 If you find PINE useful in your research, please cite our IEEE TIP paper:
 
-> **Perceptual Quality Assessment of Real-World Noise in Ultra-High-Definition Images**
+> **[Perceptual Quality Assessment of Real-World Noise in Ultra-High-Definition Images](https://ieeexplore.ieee.org/document/11724642)**
 > *IEEE Transactions on Image Processing (TIP)*
 
-The complete BibTeX entry will be added when the publication metadata is available.
+```bibtex
+@ARTICLE{11724642,
+  author={Zheng, Bolun and Weng, Zijie and Zhang, Qianyu and Zhang, Hua and Yan, Chenggang and Jia, Xu and Zhou, Wei},
+  journal={IEEE Transactions on Image Processing},
+  title={Perceptual Quality Assessment of Real-World Noise in Ultra-High-Definition Images},
+  year={2026},
+  volume={35},
+  number={},
+  pages={10757-10772},
+  keywords={Modeling;Noise;Noise reduction;Image quality;Quality assessment;Conferences;Training;Computers;UHDTV;Computer vision;Blind image quality assessment;real-world noise;ultra-high-definition;IQA database;denoising evaluation metric},
+  doi={10.1109/TIP.2026.3739609}
+}
+```
