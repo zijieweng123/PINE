@@ -7,7 +7,7 @@ This repository is the official implementation of **PINE**, the method proposed 
 
 PINE is a no-reference image quality assessment method for evaluating real-world noise in ultra-high-definition images. This implementation is built on the [IQA-PyTorch](https://github.com/chaofengc/IQA-PyTorch) training framework.
 
-The repository provides the PINE model, training and inference code, the selected training configuration, and a pretrained checkpoint. Datasets, experiment outputs, visualization experiments, RAG assets, hyperparameter sweeps, and ablation studies are not included.
+The repository provides the UNIQ-5k dataset, the PINE model, training and inference code, the selected training configuration, and a pretrained checkpoint. 
 
 ## Contents
 
